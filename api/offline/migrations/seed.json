@@ -1,0 +1,20 @@
+[
+    {
+        "id": "ced758a3-3a01-474e-9136-06aa50e53076",
+        "name": "Arnaldo Pereira",
+        "email": "arnaldo@luizalabs.com",
+        "department": "Architecture"
+    },
+    {
+        "id": "ced758a3-3a01-474e-9136-06aa50e53077",
+        "name": "Renato Pedigoni",
+        "email": "renato@luizalabs.com",
+        "department": "E-commerce"
+    },
+    {
+        "id": "ced758a3-3a01-474e-9136-06aa50e53078",
+        "name": "Thiago Catoto",
+        "email": "catoto@luizalabs.com",
+        "department": "Mobile"
+    }
+]

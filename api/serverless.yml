@@ -1,0 +1,144 @@
+service: api
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+  - serverless-plugin-include-dependencies
+  - serverless-dynamodb-autoscaling
+
+package:
+  exclude:
+    - __tests__/**
+    - .dynamodb/**
+    - .vscode/**
+    - doc/**
+    - node_modules/aws-sdk/**
+    - offline/**
+    - .eslintrc.json
+    - jest.config.js
+    - package-lock.json
+    - ReadMe.md
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  tableThroughputs:
+    read-capacity-prod: 5
+    read-capacity-default: 1
+    write-capacity-prod: 3
+    write-capacity-default: 1
+  readTableThroughput: ${self:custom.tableThroughputs.read-capacity-${self:custom.stage}, self:custom.tableThroughputs.read-capacity-default}
+  writeTableThroughput: ${self:custom.tableThroughputs.write-capacity-${self:custom.stage}, self:custom.tableThroughputs.write-capacity-default}
+  capacities:
+    - table: ApiDynamodbTable 
+      read:
+        minimum: ${self:custom.readTableThroughput}
+        maximum: 10
+        usage: 0.75
+      write:
+        minimum: ${self:custom.writeTableThroughput}
+        maximum: 5
+        usage: 0.5
+  dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      seed: true
+    migration:
+      dir: offline/migrations
+    seed:
+      domain:
+        sources:
+          - table: ${self:service}-${opt:stage, self:provider.stage}
+            sources: [./offline/migrations/seed.json]
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  apiKeys:
+    - api-api-key-${opt:stage, self:provider.stage}
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:BatchWriteItem
+        - dynamodb:BatchGetItem
+        - dynamodb:ConditionCheckItem
+        - dynamodb:GetRecords
+        - dynamodb:GetShardIterator
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+
+functions:
+  lambda:
+    handler: src/routes/api-route.handler
+    events:
+      - http:
+          path: /v1/api/employee
+          method: post
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: /v1/api/employee
+          method: get
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: /v1/api/employee/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: /v1/api/employee/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: /private/v1/api/employee
+          method: post
+          cors: true
+          private: true
+      - http:
+          path: /private/v1/api/employee
+          method: get
+          cors: true
+          private: true
+      - http:
+          path: /private/v1/api/employee/{id}
+          method: get
+          cors: true
+          private: true
+      - http:
+          path: /private/v1/api/employee/{id}
+          method: delete
+          cors: true
+          private: true
+
+resources:
+  Resources:
+    ApiDynamodbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: ${self:custom.readTableThroughput}
+          WriteCapacityUnits: ${self:custom.writeTableThroughput}
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}

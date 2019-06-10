@@ -1,0 +1,42 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Esta API é responsável em gerenciar os colaboradores da Luizalabs",
+  "main": "./src/routes/api-route.js",
+  "devDependencies": {
+    "apidoc": "^0.17.6",
+    "aws-sdk": "^2.298.0",
+    "axios": "^0.18.0",
+    "eslint": "^5.6.0",
+    "jest": "^23.4.2",
+    "serverless": "^1.32.0",
+    "serverless-dynamodb-local": "0.2.35",
+    "serverless-offline": "^3.25.14",
+    "serverless-plugin-include-dependencies": "^3.1.1",
+    "serverless-dynamodb-autoscaling": "^0.6.2",
+    "serverless-dynamodb-client": "0.0.2"
+  },
+  "scripts": {
+    "install": "docker pull lambci/lambda && ./node_modules/.bin/sls dynamodb install",
+    "setup": "./node_modules/.bin/sls config credentials --provider aws --key KEY --secret SECRET --profile luizalabs",
+    "start": "./node_modules/.bin/sls offline start -r us-east-1 --noTimeout",
+    "debug": "export SLS_DEBUG=* && node --inspect ./node_modules/.bin/sls offline start -s dev",
+    "test": "./node_modules/jest/bin/jest.js --watchAll --verbose",
+    "start:dynamodb": "./node_modules/.bin/sls dynamodb start -p 8000 --migrate true",
+    "apidoc:generate": "./node_modules/apidoc/bin/apidoc -i src/controller -o doc",
+    "apidoc:upload": "aws s3 sync ./doc/ s3://br.com.claro.meu.tecnico.api.docs/api/ --delete --exclude *.tmp --acl public-read --profile luizalabs && aws s3 cp ./doc/index.html s3://br.com.luizalabs.employee.api.docs/api/ --acl private --profile luizalabs",
+    "deploy:dev": "./node_modules/.bin/sls deploy --stage dev --region us-east-1 --verbose --aws-profile luizalabs",
+    "deploy:stage": "./node_modules/.bin/sls deploy --stage stage --region us-east-1 --verbose --aws-profile luizalabs",
+    "deploy:prod": "./node_modules/.bin/sls deploy --stage prod --region us-east-1 --verbose --aws-profile luizalabs",
+    "undeploy:dev": "./node_modules/.bin/sls remove --stage dev --region us-east-1 --verbose --aws-profile luizalabs"
+  },
+  "dependencies": {
+    "aes-cross": "^1.0.9",
+    "crypto": "^1.0.1",
+    "dynamo-merge": "^1.0.0",
+    "dynamodb-update-expression": "^0.1.21",
+    "lodash": "^4.17.10",
+    "uuid-validate": "0.0.3",
+    "commons": "file:../libs/commons"
+  }
+}

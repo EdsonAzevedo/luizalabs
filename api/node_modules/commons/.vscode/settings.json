@@ -1,0 +1,6 @@
+{
+    "eslint.autoFixOnSave": true,
+    "debug.node.autoAttach": "on",
+    "jest.debugMode": true,
+    "eslint.enable": true
+}

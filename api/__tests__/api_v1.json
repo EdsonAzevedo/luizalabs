@@ -1,0 +1,319 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2018-11-14T21:44:37.666Z",
+	"__export_source": "insomnia.desktop.app:v6.2.0",
+	"resources": [
+		{
+			"_id": "wrk_b024d597308145d7b2a09422b9cdf9cc",
+			"created": 1542230929909,
+			"description": "",
+			"modified": 1542231009437,
+			"name": "api",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_6fd99ae851a146fdaa8d34949ca7b150",
+			"color": null,
+			"created": 1542230929931,
+			"data": {
+				"api_path": "private/v1/api"
+			},
+			"isPrivate": false,
+			"metaSortKey": 1542230929931,
+			"modified": 1542231578145,
+			"name": "New Environment",
+			"parentId": "wrk_b024d597308145d7b2a09422b9cdf9cc",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_4a6ed82bd1664d0aa127111590f1bd4b",
+			"cookies": [],
+			"created": 1542230929935,
+			"modified": 1542230929935,
+			"name": "Default Jar",
+			"parentId": "wrk_b024d597308145d7b2a09422b9cdf9cc",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_cf998ba872f64a20b77540aa3c40cd9b",
+			"created": 1542231388389,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1542231388389,
+			"modified": 1542231388389,
+			"name": "employee",
+			"parentId": "wrk_b024d597308145d7b2a09422b9cdf9cc",
+			"_type": "request_group"
+		},
+		{
+			"_id": "env_2caeacfb80ce4e70b0d1f61c942e9f55",
+			"color": "#ffffff",
+			"created": 1542231026799,
+			"data": {
+				"base_url": "http://localhost:3000",
+				"header": {
+					"limit": 1,
+					"paginationToken": "bla",
+					"xApiKey": "bla"
+				},
+				"params": {
+					"id": "bla"
+				}
+			},
+			"isPrivate": false,
+			"metaSortKey": 1542231026799,
+			"modified": 1542231729527,
+			"name": "local",
+			"parentId": "env_6fd99ae851a146fdaa8d34949ca7b150",
+			"_type": "environment"
+		},
+		{
+			"_id": "env_6994c68ecd0541549479e9770a4906a2",
+			"color": "#65f505",
+			"created": 1542231245477,
+			"data": {
+				"base_url": "http://localhost:3000",
+				"header": {
+					"limit": 1,
+					"paginationToken": "bla",
+					"xApiKey": "bla"
+				},
+				"params": {
+					"id": "bla"
+				}
+			},
+			"isPrivate": false,
+			"metaSortKey": 1542231245477,
+			"modified": 1542231477956,
+			"name": "dev",
+			"parentId": "env_6fd99ae851a146fdaa8d34949ca7b150",
+			"_type": "environment"
+		},
+		{
+			"_id": "env_b555fb9a13b04794b31f070566696a86",
+			"color": "#f5d00a",
+			"created": 1542231276133,
+			"data": {
+				"base_url": "http://localhost:3000",
+				"header": {
+					"limit": 1,
+					"paginationToken": "bla",
+					"xApiKey": "bla"
+				},
+				"params": {
+					"id": "bla"
+				}
+			},
+			"isPrivate": false,
+			"metaSortKey": 1542231276133,
+			"modified": 1542231351450,
+			"name": "qa",
+			"parentId": "env_6fd99ae851a146fdaa8d34949ca7b150",
+			"_type": "environment"
+		},
+		{
+			"_id": "env_8fd94bc6195e4e4c94f21e40c560256b",
+			"color": "#f70514",
+			"created": 1542231286958,
+			"data": {
+				"base_url": "http://localhost:3000",
+				"header": {
+					"limit": 1,
+					"paginationToken": "bla",
+					"xApiKey": "bla"
+				},
+				"params": {
+					"id": "bla"
+				}
+			},
+			"isPrivate": false,
+			"metaSortKey": 1542231286958,
+			"modified": 1542231359475,
+			"name": "prd",
+			"parentId": "env_6fd99ae851a146fdaa8d34949ca7b150",
+			"_type": "environment"
+		},
+		{
+			"_id": "req_31fc6438db58435791df17842fc7dc7f",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{}"
+			},
+			"created": 1542231404991,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_1265411a9c124f51bf3bfa7b33587d68",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_45b16bf42de94f57ad33d24713ae2efe",
+					"name": "x-api-key",
+					"value": "{{ header.xApiKey  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1542231404991,
+			"method": "POST",
+			"modified": 1542231813044,
+			"name": "criar nova employee",
+			"parameters": [],
+			"parentId": "fld_cf998ba872f64a20b77540aa3c40cd9b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}/{{ api_path  }}/employee",
+			"_type": "request"
+		},
+		{
+			"_id": "req_bce97e3bb56a44a891c3c871abc32342",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{}"
+			},
+			"created": 1542231654360,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_1265411a9c124f51bf3bfa7b33587d68",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_45b16bf42de94f57ad33d24713ae2efe",
+					"name": "x-api-key",
+					"value": "{{ header.xApiKey  }}"
+				},
+				{
+					"id": "pair_979108f4bd3f4d909411d62a0da9e0e3",
+					"name": "limit",
+					"value": "{{ header.limit  }}"
+				},
+				{
+					"disabled": true,
+					"id": "pair_d1856c174cf14c8da78d124ea32d9242",
+					"name": "pagination-token",
+					"value": "{{ header.paginationToken  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1541667099601.5,
+			"method": "GET",
+			"modified": 1542231815242,
+			"name": "listar employee",
+			"parameters": [],
+			"parentId": "fld_cf998ba872f64a20b77540aa3c40cd9b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}/{{ api_path  }}/employee",
+			"_type": "request"
+		},
+		{
+			"_id": "req_93ed3b88767f42918e179e54c16eb6e1",
+			"authentication": {},
+			"body": {},
+			"created": 1542231708044,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_45b16bf42de94f57ad33d24713ae2efe",
+					"name": "x-api-key",
+					"value": "{{ header.xApiKey  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1541949252296.25,
+			"method": "GET",
+			"modified": 1542231841969,
+			"name": "buscar employee",
+			"parameters": [],
+			"parentId": "fld_cf998ba872f64a20b77540aa3c40cd9b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}/{{ api_path  }}/employee/{{ params.id  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_36a3547ff3b8429980fbc12ef262670f",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{}"
+			},
+			"created": 1542231737542,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_1265411a9c124f51bf3bfa7b33587d68",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_45b16bf42de94f57ad33d24713ae2efe",
+					"name": "x-api-key",
+					"value": "{{ header.xApiKey  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1541808175948.875,
+			"method": "PUT",
+			"modified": 1542231816359,
+			"name": "atualizar employee",
+			"parameters": [],
+			"parentId": "fld_cf998ba872f64a20b77540aa3c40cd9b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}/{{ api_path  }}/employee/{{ params.id  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_08b6e42364c54cff96733f85bc53c25c",
+			"authentication": {},
+			"body": {},
+			"created": 1542231819364,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_45b16bf42de94f57ad33d24713ae2efe",
+					"name": "x-api-key",
+					"value": "{{ header.xApiKey  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1541878714122.5625,
+			"method": "DELETE",
+			"modified": 1542231834163,
+			"name": "excluir employee",
+			"parameters": [],
+			"parentId": "fld_cf998ba872f64a20b77540aa3c40cd9b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}/{{ api_path  }}/employee/{{ params.id  }}",
+			"_type": "request"
+		}
+	]
+}
