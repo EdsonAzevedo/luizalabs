@@ -35,7 +35,7 @@
     "crypto": "^1.0.1",
     "dynamo-merge": "^1.0.0",
     "dynamodb-update-expression": "^0.1.21",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.21",
     "uuid-validate": "0.0.3",
     "commons": "file:../libs/commons"
   }
